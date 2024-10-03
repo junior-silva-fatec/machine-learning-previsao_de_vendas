@@ -1,3 +1,3 @@
 # machine-learning-previsao_de_vendas
-André Rosa
+André Rosa  
 Junior Araujo da Silva
