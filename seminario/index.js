@@ -1,6 +1,7 @@
 const fs = require('fs');
 const csv = require('csv-parser');
 const regression = require('regression');
+const { RandomForestRegression } = require('ml-random-forest'); // Biblioteca Random Forest
 
 let data = [];
 let colunas = ["Store", "Date", "Weekly_Sales", "Holiday_Flag", 
@@ -14,10 +15,12 @@ fs.createReadStream('./Walmart_Store_sales.csv')  // Substitua com o caminho do 
   })
   .on('end', () => {
     analyzeData(data);
-    performLinearRegression(data, 'Temperature', 'Weekly_Sales');  // Substitua pelos nomes das colunas
-    calculatePearsonCorrelation(data, 'Temperature', 'Weekly_Sales'); // Substitua pelos nomes das colunas
+    performLinearRegression(data, 'Temperature', 'Weekly_Sales');  // Regressão Linear
+    calculatePearsonCorrelation(data, 'Temperature', 'Weekly_Sales'); // Correlação de Pearson
+    performMarkovAnalysis(data, 'Holiday_Flag'); // Análise de Markov
+    performRandomForest(data); // Regressão usando Random Forest
   });
-  
+
 function analyzeData(data) {
   if (data.length === 0) {
     console.log('Arquivo vazio ou inválido!');
@@ -98,4 +101,72 @@ function calculatePearsonCorrelation(data, columnX, columnY) {
   // Exibe o resultado da correlação de Pearson
   console.log(`Coeficiente de correlação de Pearson entre "${columnX}" e "${columnY}":`);
   console.log(`r = ${correlation.toFixed(4)}`);
+}
+
+function performMarkovAnalysis(data, column) {
+  // Contagem de transições entre estados
+  const states = ['0', '1'];  // Supondo que os valores possíveis sejam 0 e 1 (Holiday_Flag)
+  const transitions = { '0': { '0': 0, '1': 0 }, '1': { '0': 0, '1': 0 } };
+
+  // Preenche a tabela de transições
+  for (let i = 0; i < data.length - 1; i++) {
+    const currentState = data[i][column];
+    const nextState = data[i + 1][column];
+
+    if (states.includes(currentState) && states.includes(nextState)) {
+      transitions[currentState][nextState]++;
+    }
+  }
+
+  // Normaliza a tabela de transições para obter as probabilidades
+  for (let state of states) {
+    const totalTransitions = transitions[state]['0'] + transitions[state]['1'];
+    transitions[state]['0'] /= totalTransitions;
+    transitions[state]['1'] /= totalTransitions;
+  }
+
+  // Exibe a matriz de transição
+  console.log(`Matriz de transição de Markov para "${column}":`);
+  console.log(`Estado atual -> [0, 1]`);
+  console.log(`0 -> [${transitions['0']['0'].toFixed(2)}, ${transitions['0']['1'].toFixed(2)}]`);
+  console.log(`1 -> [${transitions['1']['0'].toFixed(2)}, ${transitions['1']['1'].toFixed(2)}]`);
+}
+
+function performRandomForest(data) {
+  // Preparar dados para o modelo de Random Forest
+  const features = ['Temperature', 'Fuel_Price', 'CPI', 'Unemployment']; // Variáveis independentes
+  const target = 'Weekly_Sales'; // Variável dependente
+
+  // Filtrar dados e preparar as variáveis de entrada (X) e de saída (y)
+  const X = data.map((row) => {
+    return features.map((feature) => parseFloat(row[feature])).filter((value) => !isNaN(value));
+  }).filter((row) => row.length === features.length);
+
+  const y = data.map((row) => parseFloat(row[target])).filter((value) => !isNaN(value));
+
+  if (X.length !== y.length) {
+    console.log('O número de entradas não é compatível com o número de saídas.');
+    return;
+  }
+
+  // Configurar o modelo Random Forest
+  const options = {
+    nEstimators: 100,  // Número de árvores na floresta
+    maxFeatures: 3,    // Número máximo de características para dividir um nó
+    minSamplesSplit: 2 // Número mínimo de amostras necessárias para dividir um nó
+  };
+
+  const rf = new RandomForestRegression(options);
+  
+  // Treinar o modelo
+  rf.train(X, y);
+
+  // Prever valores
+  const predictions = rf.predict(X);
+  
+  // Exibir os resultados
+  console.log('Resultados da previsão usando Random Forest:');
+  predictions.forEach((prediction, index) => {
+    console.log(`Valor real: ${y[index]}, Valor previsto: ${prediction}`);
+  });
 }
