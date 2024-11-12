@@ -124,33 +124,32 @@
             <br>
             <h4>B. Passos para o experimento (Markov)</h4>
             <h5>Introdução ao Método de Markov</h5>
-                <p>Definição: As cadeias de Markov são modelos matemáticos que descrevem um processo onde o estado
-                    futuro depende apenas do estado atual, e não dos estados passados. Isso é chamado de “propriedade de
-                    Markov” ou “memória curta”.
-                    Aplicação: Em previsão de vendas, o método de Markov permite prever mudanças nos níveis de vendas
-                    (como "alto", "médio", "baixo") com base em padrões de transição observados.</p>
-                <br>
-                <h5>Como o Método de Markov Funciona</h5>
-                <p>Categorização dos Dados:
+            <p>Definição: As cadeias de Markov são modelos matemáticos que descrevem um processo onde o estado
+                futuro depende apenas do estado atual, e não dos estados passados. Isso é chamado de “propriedade de
+                Markov” ou “memória curta”.
+                Aplicação: Em previsão de vendas, o método de Markov permite prever mudanças nos níveis de vendas
+                (como "alto", "médio", "baixo") com base em padrões de transição observados.</p>
+            <br>
+            <h5>Como o Método de Markov Funciona</h5>
+            <p>Categorização dos Dados:
 
-                    As vendas são categorizadas em diferentes níveis (ex.: "baixo", "médio" e "alto").
-                    Essas categorias são definidas com base em um cálculo de limites (thresholds), como os quartis, para
-                    distribuir os dados em grupos representativos.
-                    Construção da Matriz de Transição:
+                As vendas são categorizadas em diferentes níveis (ex.: "baixo", "médio" e "alto").
+                Essas categorias são definidas com base em um cálculo de limites (thresholds), como os quartis, para
+                distribuir os dados em grupos representativos.
+                Construção da Matriz de Transição:
 
-                    A matriz de transição calcula as probabilidades de mudar de um nível de vendas para outro.
-                    Exemplo: Se as vendas estão no nível “médio”, a matriz indica as probabilidades de passar para
-                    “alto”, permanecer em “médio”, ou cair para “baixo”.
-                    Essa matriz é baseada na frequência de transições nos dados históricos.
-                    Previsão:
+                A matriz de transição calcula as probabilidades de mudar de um nível de vendas para outro.
+                Exemplo: Se as vendas estão no nível “médio”, a matriz indica as probabilidades de passar para
+                “alto”, permanecer em “médio”, ou cair para “baixo”.
+                Essa matriz é baseada na frequência de transições nos dados históricos.
+                Previsão:
 
-                    Com a matriz de transição, é possível prever o próximo estado de vendas (ex.: de “baixo” para
-                    “médio”) com base no estado atual.
-                    A previsão em Markov considera apenas o estado presente, simplificando o modelo.</p>
-                    <br>
-                <h5>Implementação e Precisão do Modelo</h5>
-
-                Passo a Passo:
+                Com a matriz de transição, é possível prever o próximo estado de vendas (ex.: de “baixo” para
+                “médio”) com base no estado atual.
+                A previsão em Markov considera apenas o estado presente, simplificando o modelo.</p>
+            <br>
+            <h5>Implementação e Precisão do Modelo</h5>
+            <p>Passo a Passo:
 
                 Definimos as categorias de vendas ("baixo", "médio", "alto") automaticamente, usando os dados de
                 vendas.
@@ -161,21 +160,22 @@
 
                 Comparamos as previsões do modelo com os valores reais, calculando a porcentagem de previsões
                 corretas.
-                Isso nos dá a acurácia, que indica o desempenho do modelo em prever as vendas corretamente.
-                <br>
-                <h5>Vantagens e Limitações do Método de Markov</h5>
-                <p>Vantagens:
-                    Simplicidade: Fácil de entender e implementar, com foco no estado atual.
-                    Eficiente: Rápido para treinar e usar, ideal para dados com padrões repetitivos.
-                    Limitações:
-                    Memória Curta: O método de Markov considera apenas o estado atual, ignorando padrões de longo prazo.
-                    Dependência de Categorias: Depende de uma boa categorização dos dados; se a categorização não for
-                    representativa, a previsão pode ser menos precisa.</p>
+                Isso nos dá a acurácia, que indica o desempenho do modelo em prever as vendas corretamente.</p>
 
-                <br>
-                <h4>C. Passos para o experimento (Pearson)</h4>
-                <p>Pearson</p>
-                <br>
+            <br>
+            <h5>Vantagens e Limitações do Método de Markov</h5>
+            <p>Vantagens:
+                Simplicidade: Fácil de entender e implementar, com foco no estado atual.
+                Eficiente: Rápido para treinar e usar, ideal para dados com padrões repetitivos.
+                Limitações:
+                Memória Curta: O método de Markov considera apenas o estado atual, ignorando padrões de longo prazo.
+                Dependência de Categorias: Depende de uma boa categorização dos dados; se a categorização não for
+                representativa, a previsão pode ser menos precisa.</p>
+
+            <br>
+            <h4>C. Passos para o experimento (Pearson)</h4>
+            <p>Pearson</p>
+            <br>
 
         </section>
 
