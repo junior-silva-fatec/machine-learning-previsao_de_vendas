@@ -66,6 +66,6 @@ ol {
     margin-left: 20px;
 }
 
-td {
+td, th {
     padding: 10px;
 }
