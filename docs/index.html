@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Site com Navegação Lateral</title>
+    <title>Seminário Aprendizagem de Máquina</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -86,20 +86,20 @@
             <br>
             <h4>B. Passos para o experimento</h4>
             <ol>
-                <li>Loja - o número de lojas, uma vez que são consideradas 45 lojas consideradas. </li>
-                <li>Data - Considerámos a data como a primeira data da semana de vendas para a previsão de séries
-                    cronológicas.</li>
-                <li>Vendas semanais - vendas semanais para uma determinada loja.</li>
-                <li>Sinal de feriado - para determinar se a semana é uma semana de feriado. Mostra 1 para semana de
-                    feriados e 0 para semana sem feriados. Isto ajudará a compreender as tendências durante os feriados.
-                </li>
-                <li>Temperatura - Temperatura registada no dia da venda.</li>
-                <li>Preço do combustível - Custo do combustível na região onde a loja está localizada.</li>
-                <li>IPC - Índice de preços ao consumidor dominante.</li>
-                <li>Desemprego - Taxa de desemprego dominante na região onde a loja está presente.</li>
+                <li>O primeiro passo é importar as bibliotecas necessárias que necessárias que serão utilizadas para construir o modelo, tais como numpy, pandas, matplotlib, seaborn. </li>    
+                <li>Depois disso, carregámos o conjunto de dados para cada ano de 2010, 2011 e 2012, respetivamente, para o IDE.</li> 
+                <li>Depois de os dados terem sido carregados, preparou-os para a experiência, convertendo a data para o formato datetime.</li>
+                <li>Verificar se existem valores em falta ou nulos.</li> 
+                <li>De seguida, dividimos a coluna da data e criámos 3 colunas nomeadamente dia, mês e ano.</li>
+                <li>Para construir o modelo de previsão, encontrámos os valores anómalos nos dados, traçando a temperatura, o preço do combustível, o IPC e o Desemprego no eixo X.</li>
+                <li>O passo seguinte foi eliminar os valores anómalos e considerar o intervalo em que os valores anómalos não se enquadram.</li>
+                <li>Em seguida, verificou-se novamente se o gráfico está correto sem os valores anómalos.</li>
+                <li>A biblioteca sklearn foi importada para construir o modelo e selecionou caraterísticas e objectivos para os eixos X e Y para prever as vendas.</li>
+                <li>Dividiu os dados em conjuntos de treino e de teste na proporção de 80:20.</li>
+                <li>Utilizou a regressão linear, o regressor Random Forest, KNN Regressor, SVR, Extra Tree Regressor para prever as vendas da loja Walmart no eixo Y para efetuar uma análise comparativa análise comparativa do modelo de previsão.</li>
+                <li>Calculou os erros no modelo de previsão calculando o erro absoluto médio, o erro quadrático médio e a raiz do erro quadrático médio.</li>
             </ol>
         </section>
-
 
     </div>
 
