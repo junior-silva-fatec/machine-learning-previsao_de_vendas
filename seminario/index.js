@@ -77,6 +77,31 @@ function calculateAccuracy(predictions, actuals) {
     return correct / predictions.length;
 }
 
+// Função para calcular o coeficiente de correlação de Pearson entre vendas e outras variáveis
+function calculatePearson(df) {
+    let pearsonResults = {};
+    const variables = ["Fuel_Price", "Unemployment", "Holiday_Flag", "CPI"];
+    
+    variables.forEach((variable) => {
+        const weeklySales = df["Weekly_Sales"].values;
+        const otherVariable = df[variable].values;
+
+        // Cálculo manual do coeficiente de correlação de Pearson
+        const n = weeklySales.length;
+        const meanSales = weeklySales.reduce((a, b) => a + b, 0) / n;
+        const meanVar = otherVariable.reduce((a, b) => a + b, 0) / n;
+
+        const numerator = weeklySales.reduce((sum, sales, i) => sum + (sales - meanSales) * (otherVariable[i] - meanVar), 0);
+        const denominatorSales = Math.sqrt(weeklySales.reduce((sum, sales) => sum + Math.pow(sales - meanSales, 2), 0));
+        const denominatorVar = Math.sqrt(otherVariable.reduce((sum, varValue) => sum + Math.pow(varValue - meanVar, 2), 0));
+
+        const pearsonCoefficient = numerator / (denominatorSales * denominatorVar);
+        pearsonResults[variable] = pearsonCoefficient;
+    });
+
+    return pearsonResults;
+}
+
 // Função principal para execução
 async function main() {
     let df = await loadData();
@@ -99,6 +124,10 @@ async function main() {
 
     let accuracy = calculateAccuracy(predictions, actuals);
     console.log(`Acurácia do modelo: ${(accuracy * 100).toFixed(2)}%`);
+
+    // Calculando e exibindo a correlação de Pearson entre vendas e variáveis
+    const pearsonResults = calculatePearson(df);
+    console.log("Correlação de Pearson com 'Weekly_Sales':", pearsonResults);
 }
 
 // Executa o script

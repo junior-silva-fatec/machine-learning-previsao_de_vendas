@@ -2,6 +2,7 @@
   "dependencies": {
     "csv-parser": "^3.0.0",
     "danfojs-node": "^1.1.2",
+    "decision-tree": "^0.3.7",
     "fs": "^0.0.1-security",
     "ml-random-forest": "^2.1.0",
     "papaparse": "^5.4.1",
