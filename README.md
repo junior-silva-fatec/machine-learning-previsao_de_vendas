@@ -1,7 +1,7 @@
 # machine-learning-previsao_de_vendas
 ## Seminário - Aprendizagem de Máquina
 ## Fatec Mauá
-Desenvolvimento de Software Multiplataforma
+Desenvolvimento de Software Multiplataforma  
 2° Semestre de 2024
 
 ## Professor
