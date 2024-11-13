@@ -62,7 +62,7 @@ h2 {
     color: #4CAF50;
 }
 
-ol {
+ol, ul {
     margin-left: 20px;
 }
 
