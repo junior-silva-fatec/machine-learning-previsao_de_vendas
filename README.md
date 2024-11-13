@@ -8,7 +8,7 @@ Desenvolvimento de Software Multiplataforma
 Dr. Bruno Zolotareff dos Santos
 
 ## Componentes
-André Rosa
+André Rosa 
 Junior Araujo da Silva
 
 ## Tema
